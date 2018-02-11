@@ -1,0 +1,251 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>树</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    
+    <link rel="stylesheet" href="./bootstrap.min.css"> 
+
+    <script src="./jquery-3.1.1.min.js"></script>
+    <script src="./bootstrap.min.js"></script>
+
+    <script src="./tree.min.js"></script>  
+
+    <style>
+        .treeClass {
+            background-color: cadetblue
+        }
+    </style>
+</head>
+
+<body>
+    <h3>树</h3>
+
+    <br>
+ 
+   
+    <p>树9</p>
+    <so:tree :id="tree9" :data="data9" :showCheckbox="true" :onLoaded="loaded9" :onNodeSelected="nodeSelected9"></so:tree>
+
+  
+    <br>
+    <p>用例0：id </p>
+    <p>预期结果：组件无报错</p>
+    <p>实际结果：组件无报错</p>
+    <so:tree :id="tree0"></so:tree>
+
+    <script>
+	var data9=  [
+      { "id": 38, "parentId": "#", "text": "盆地", "value": "盆地_value", "state": { "selected": false, "opened": true } },
+      { "id": 39, "parentId": 38, "text": "陆相沉积盆地", "value": "陆相沉积盆地_value", "state": { "selected": false, "opened": false } },
+      { "id": 40, "parentId": 38, "text": "海相沉积盆地", "value": "海相沉积盆地_value", "state": { "selected": false, "opened": true } },
+      { "id": 41, "parentId": 42, "text": "盆地/一级构造单元", "value": "value", "state": { "selected": true, "opened": true } },
+      { "id": 42, "parentId": 39, "text": "隆起", "value": "value", "state": { "selected": false, "opened": true } },
+      { "id": 44, "parentId": "#", "text": "坳陷", "value": "value", "state": { "selected": false, "opened": true } },
+      { "id": 45, "parentId": 38, "text": "地堑", "value": "value", "state": { "selected": false, "opened": true } },
+      { "id": 53, "parentId": null, "text": "盆地/亚一级构造单元", "value": "value", "state": { "selected": false, "opened": false } },
+      { "id": 55, "parentId": 53, "text": "凸起", "value": "value", "state": { "selected": false, "opened": true } }
+  ]
+        // first define all parameters & pay attention to its define order
+        
+
+         
+ 
+        var hide2 = function() {
+            soUIDev.setDataById("tree2", "hidden2", true)
+        }
+
+        var loaded3 = function(event) {
+            var nodesId = []
+            for (var i in event.detail.selectedNodes) {
+                nodesId.push(event.detail.selectedNodes[i].id)
+            }
+            console.log("用例3选中的节点id有：" + nodesId)
+        }
+
+        var loaded5 = function(event) {
+            var nodesId = []
+            for (var i in event.detail.selectedNodes) {
+                nodesId.push(event.detail.selectedNodes[i].id)
+            }
+            console.log("用例5选中的节点id有：" + nodesId)
+        }
+
+        var nodeSelected3 = function(event) {
+            console.log("用例3,选中节点事件")
+            console.log(event)
+        }
+
+        var nodeSelected5 = function(event) {
+            console.log("用例5,选中节点事件")
+            console.log(event)
+        }
+
+        var nodeSelected4 = function(event) {
+            console.log("用例4,选中节点事件")
+            console.log(event)
+        }
+        var add4_2 = function() {}
+        var update4_2 = function() {}
+        var delete4_2 = function() {}
+        var nodeSelected4_2 = function() {}
+        var add4 = function(event) {
+            var newNode = event.detail.newNode,
+                id = newNode.id,
+                parentId = newNode.parentId,
+                text = newNode.text,
+                value = newNode.value,
+                state = newNode.state,
+                newId = ""
+            $.ajax({
+                url: url4_1,
+                type: "get",
+                dataType: "json",
+                async: false,
+                success: function(json) {
+                    if (json) {
+                        newId = Date.now() - 0
+                    }
+                }
+            })
+            return newId
+        }
+        var update4 = function(event) {
+            var newNode = event.detail.newNode,
+                id = newNode.id,
+                parentId = newNode.parentId,
+                text = newNode.text,
+                value = newNode.value,
+                state = newNode.state,
+                isSuccess = false
+            $.ajax({
+                url: url4_1,
+                type: "get",
+                dataType: "json",
+                async: false,
+                success: function(json) {
+                    if (json) {
+                        isSuccess = true
+                    }
+                }
+            })
+        }
+        var delete4 = function(event) {
+            var id = event.detail.id,
+                isSuccess = false
+            if (!isSuccess) {
+                $.ajax({
+                    url: url2,
+                    type: "get",
+                    dataType: "json",
+                    success: function(json) {
+                        soUIDev.setDataById("tree4", "data4", json)
+                    }
+                })
+            }
+        }
+
+
+        var getSelectsId = function() {
+            var selection = $("#tree5")[0].getAttribute("selection")
+            alert("用例5选中的节点id：" + selection)
+        }
+
+        var loaded6 = function(event) {
+            var nodesId = []
+            for (var i in event.detail.selectedNodes) {
+                nodesId.push(event.detail.selectedNodes[i].id)
+            }
+            console.log("用例6选中的节点id有：" + nodesId)
+        }
+
+        var nodeSelected6 = function(event) {
+            console.log("用例6,选中节点事件")
+            console.log(event)
+        }
+
+        var loaded7 = function(event) {
+            var nodesId = []
+            for (var i in event.detail.selectedNodes) {
+                nodesId.push(event.detail.selectedNodes[i].id)
+            }
+            console.log("用例7选中的节点id有：" + nodesId)
+        }
+
+        var nodeSelected7 = function(event) {
+            console.log("用例7,选中节点事件,节点“盆地/亚一级构造单元”联动树8获取新数据")
+            if (event.detail.activeNode.id == "53") {
+                $.ajax({
+                    url: url8_1,
+                    type: "get",
+                    dataType: "json",
+                    success: function(json) {
+                        soUIDev.setDataById("tree8", "data8", json)
+                    }
+                })
+            } else {
+                soUIDev.setDataById("tree8", "data8", null)
+            }
+        }
+
+        var hidetree8 = function() {
+            soUIDev.setDataById("tree8", "data8", null)
+        }
+
+        var loaded8 = function(event) {
+            var nodesId = []
+            for (var i in event.detail.selectedNodes) {
+                nodesId.push(event.detail.selectedNodes[i].id)
+            }
+            console.log("用例8选中的节点id有：" + nodesId)
+        }
+
+        var nodeSelected8 = function(event) {
+            console.log("用例8,选中节点事件")
+            console.log(event)
+        }
+
+        var loaded9 = function(event) {
+            var nodesId = []
+            for (var i in event.detail.selectedNodes) {
+                nodesId.push(event.detail.selectedNodes[i].id)
+            }
+            console.log("用例9选中的节点id有：" + nodesId)
+        }
+
+        var nodeSelected9 = function(event) {
+            console.log("用例9, 节点“盆地/亚一级构造单元”联动切换显示隐藏树10")
+            if (event.detail.activeNode.id == "53" && !!event.detail.activeNode.state) {
+                if (event.detail.activeNode.state.selected) {
+                    $.ajax({
+                        url: url10,
+                        type: "get",
+                        dataType: "json",
+                        success: function(json) {
+                            soUIDev.setDataById("tree10", "data10", json)
+                        }
+                    })
+                } else {
+                    soUIDev.setDataById("tree10", "data10", null)
+                }
+            }
+        }
+
+        var loaded10 = function(event) {
+            var nodesId = []
+            for (var i in event.detail.selectedNodes) {
+                nodesId.push(event.detail.selectedNodes[i].id)
+            }
+            console.log("用例10选中的节点id有：" + nodesId)
+        }
+
+        var nodeSelected10 = function(event) {
+            console.log("用例10,选中节点事件")
+            console.log(event)
+        }
+    </script>
+</body>
+
+</html>

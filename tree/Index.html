@@ -1,0 +1,55 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tree组件</title>    
+
+    <link rel="stylesheet" href="./bootstrap.min.css"> 
+
+    <script src="./jquery-3.1.1.min.js"></script>
+    <script src="./bootstrap.min.js"></script>
+
+    <script src="./plugin.min.js"></script>  
+</head>
+<body> 
+    <h2>Tree 实例</h2>
+    <div id="tree" style="margin-left: 30px">
+        <so:tree :datasource="datasource"   :onnodeselect="onNodeSelect"></so:tree>
+    </div>
+    <script>  
+	var treeData=[
+        { "id": 1, "parentid": null, "text": "A", "value":  "A_value"  },
+        { "id": 2, "parentid": 1, "text": "A1",  "value": "A1_value" },
+        { "id": 3, "parentid": 1, "text": "A2",   "value": "A2_value" },
+        { "id": 4, "parentid": null, "text": "B",   "value": "B_value" },
+        { "id": 5, "parentid": 4, "text": "B1",  "value": "B1_value" },
+        { "id": 6, "parentid": 5, "text": "B11",  "value": "B11_value" },
+        { "id": 7, "parentid": 5, "text": "B12",  "value": "B12_value" },
+        { "id": 8, "parentid": 7, "text": "B121", "value": "B121_value" },
+        { "id": 9, "parentid": null, "text": "C",   "value": "C_value" },
+        { "id": 10, "parentid": 9, "text": "C1",   "value": "C1_value" },
+        { "id": 11, "parentid": null, "text": "D",   "value": "D_value" },
+        { "id": 12, "parentid": null, "text": "E",   "value": "E_value" }
+    	]
+
+        var datasource = treeData 
+
+        plugins.bind({
+            scope: "tree",
+            model:"so:tree"
+        }); 
+
+        function onNodeSelect(node){
+            showNodeInfo(node);
+        } 
+
+        function showNodeInfo(node) {
+            var id = node.id;
+            var text = node.text;
+            var parent = node.parent;
+            var value = node.original.value;
+            alert("节点id:" + id + "\n节点text:" + text + "\n父节点id:" + parent + "\n节点value:" + value);
+        }
+    </script>
+</body>
+</html>
